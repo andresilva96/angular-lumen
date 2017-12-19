@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.http.post('http://localhost:8080/auth/login', this.user)
+    window.localStorage
+    this.http.post('http://localhost:8080/api/auth/login', this.user)
       .subscribe(response => console.log(response));
   }
 }
