@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private http: HttpClient, private jwtToken: JwtTokenService, private localStorage: LocalStorageService) { }
+  constructor(private http: HttpClient, private jwtToken: JwtTokenService) { }
 
   ngOnInit() {
   }
@@ -23,6 +23,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.http.post('http://localhost:8080/api/auth/login', this.user)
-      .subscribe(response => console.log(this.localStorage.setObject('token', response)));
+      .subscribe(response => this.jwtToken.setToken(response));
   }
 }
