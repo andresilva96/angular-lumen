@@ -10,7 +10,6 @@ import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import { UserListComponent } from './users/user-list/user-list.component';
 import {AuthService} from "./services/auth.service";
-import {HeaderService} from "./interceptors/header.service";
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: LoginComponent},
@@ -32,8 +31,7 @@ const appRoutes: Routes = [
   providers: [
     LocalStorageService,
     JwtTokenService,
-    AuthService,
-      HeaderService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
