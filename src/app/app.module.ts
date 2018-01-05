@@ -9,9 +9,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {LocalStorageService} from "./services/local-storage.service";
 import {JwtTokenService} from "./services/jwt-token.service";
 import { UserListComponent } from './users/user-list/user-list.component';
+import {AuthService} from "./services/auth.service";
+import {HeaderService} from "./interceptors/header.service";
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: LoginComponent},
+    {path: 'users/list', component: UserListComponent},
 ];
 
 @NgModule({
@@ -28,7 +31,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     LocalStorageService,
-    JwtTokenService
+    JwtTokenService,
+    AuthService,
+      HeaderService
   ],
   bootstrap: [AppComponent]
 })
