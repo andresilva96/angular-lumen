@@ -20,9 +20,8 @@ export class UserListComponent implements OnInit {
       const headers = new HttpHeaders();
       headers.set('Authorization', `Bearer ${this.jwtToken.getToken()}`);
       headers.set('Content-Type', 'application/json');
-      console.log(this.jwtToken.getToken());
       this.http
-          .get<Array<Object>>('http://localhost:8080/api/users', {headers})
+          .get('http://localhost:8080/api/users', {headers})
           .subscribe(response => console.log(response));
   }
 }
