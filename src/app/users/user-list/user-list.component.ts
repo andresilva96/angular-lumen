@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtTokenService} from '../../services/jwt-token.service';
-import {Headers, RequestOptions} from '@angular/http';
 
 @Component({
   selector: 'app-user-list',
@@ -17,9 +16,9 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
-      const headers = new HttpHeaders();
-      headers.append('Authorization', `Bearer ${this.jwtToken.getToken()}`);
-      headers.append('Content-Type', 'application/json');
+      const headers = new HttpHeaders()
+          .append('Authorization', `Bearer ${this.jwtToken.getToken()}`)
+          .append('Content-Type', 'application/json');
       this.http
           .get('http://localhost:8080/api/users', {headers})
           .subscribe(response => console.log(response));
