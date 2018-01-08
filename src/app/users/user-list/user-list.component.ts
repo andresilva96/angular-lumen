@@ -8,7 +8,7 @@ import {JwtTokenService} from '../../services/jwt-token.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: Array<any> = [];
+  private usuarios: any;
   constructor(private http: HttpClient, private jwtToken: JwtTokenService) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
           .append('Authorization', `Bearer ${this.jwtToken.getToken()}`)
           .append('Content-Type', 'application/json');
       this.http
-          .get<Array<any>>('http://localhost:8080/api/users', {headers})
-          .subscribe(response => console.log(response));
+          .get('http://localhost:8080/api/users', {headers})
+          .subscribe(response => this.usuarios = response);
   }
 }
