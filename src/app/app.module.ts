@@ -11,6 +11,7 @@ import {JwtTokenService} from "./services/jwt-token.service";
 import { UserListComponent } from './users/user-list/user-list.component';
 import {AuthService} from "./services/auth.service";
 import {AuthGuardRouterService} from "./services/auth-guard-router.service";
+import { MenuComponent } from './template/menu/menu.component';
 
 const appRoutes: Routes = [
     {path: 'login', pathMatch: 'full', component: LoginComponent},
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
