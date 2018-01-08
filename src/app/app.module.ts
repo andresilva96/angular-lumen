@@ -12,6 +12,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import {AuthService} from "./services/auth.service";
 import {AuthGuardRouterService} from "./services/auth-guard-router.service";
 import { MenuComponent } from './template/menu/menu.component';
+import {HeadersService} from "./services/headers.service";
 
 const appRoutes: Routes = [
     {path: 'login', pathMatch: 'full', component: LoginComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     LocalStorageService,
     JwtTokenService,
     AuthService,
-    AuthGuardRouterService
+    AuthGuardRouterService,
+    HeadersService
   ],
   bootstrap: [AppComponent]
 })
