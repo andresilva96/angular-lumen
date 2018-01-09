@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {JwtTokenService} from '../../services/jwt-token.service';
 import {HeadersService} from "../../services/headers.service";
+import {JwtTokenService} from "../../services/jwt-token.service";
 
 @Component({
   selector: 'app-user-list',
@@ -10,7 +10,7 @@ import {HeadersService} from "../../services/headers.service";
 })
 export class UserListComponent implements OnInit {
   private usuarios: any;
-  constructor(private http: HttpClient, private options: HeadersService) { }
+  constructor(private http: HttpClient, private options: HeadersService, private jwtToken: JwtTokenService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -20,6 +20,15 @@ export class UserListComponent implements OnInit {
     const headers = this.options.headers();
     this.http
       .get('http://localhost:8080/api/users', {headers})
-      .subscribe(response => this.usuarios = response);
+      .subscribe(
+    response => {
+            this.usuarios = response;
+          },
+  error => {
+          this.http
+            .post('http://localhost:8080/api/auth/refresh_token', {}, {headers})
+            .subscribe(response => this.jwtToken.setToken(response));
+        }
+      );
   }
 }
